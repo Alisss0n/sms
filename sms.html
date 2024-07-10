@@ -7,35 +7,49 @@
 
 </head>
 <body>
-    <p>Шаблон СМС:</p>
-<ul class="list-group" id="answerList">
-    <form>
-        <input type="text" id="text" placeholder="Текст сообщения">
-      </form>
+    <p>Шаблон СМС:
+    <select class="list-group" id="smsList">
+    
+    </select>
+    </p>
+    Сообщение<br><textarea name="message" rows="4" cols="40" id="messageArea"></textarea></br>
+    <p>Имя отправителя:
+    <select>
+        <option>CREDEO</option>
+        <option>DENGIPODPTS</option>
+    </select>
+    </p>
+    <p>Номер получателя:
+    <select id="tel">
+        
+    </select>
+    </p>
+      
+      <script type="text/javascript" src="jquery.js"></script>
+      
+      <script>
+      $(document).ready(function() {
+        createList();
+      });
+      
+      var items = [
+        {title: "1", message: "Test1"},
+        {title: "2", message: "Test2"}
+      ];
+      
+      function createList() {
+        for (let i = 0; i < items.length; i++) {
+          $('#smsList').append($('<option>', {
+            class: 'list-group-item',
+            text: items[i].title
+          }));
+        }
+      }
+      $('#smsList').on('change', function() {
+  var selectedTitle = $(this).val();
+  $('#messageArea').val(items.find(item => item.title === selectedTitle).message);
+});
 
-      <button onclick="sendMessage()">Отправить</button>
-
-    <script type="text/javascript"></script>
-    const items=[
-    {
-        message:'Список наших складов',
-        title:'Список наших складов'
-    },
-    {
-        message: 'Здравствуйте, приветствую вас',
-        title: 'приветствую'
-    }
-]
-function createList(){
-    for (let i = 0; i < items.length; i++) {
-        document.getElementById("answerList").innerHTML +=
-            `<li class="list-group-item"
-            onclick=""
-
-    }
-}
-document.getElementById('sendMessage').onclick = sendMessage;
-
-function sedMessage() {
-  alert('Отправлено!')
-}
+</script>
+</body>
+</html>
